@@ -1,3 +1,3 @@
 # OraleMango
-Project by Dillon, Hanah, Armaan, and Juan
+Project by Dillon, Hannah, Armaan, and Juan
 anything
