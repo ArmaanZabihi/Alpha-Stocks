@@ -1,2 +1,2 @@
 # OraleMango
-Project by Dillon, Hanah, and Juan
+Project by Dillon, Hannah, and Juan
