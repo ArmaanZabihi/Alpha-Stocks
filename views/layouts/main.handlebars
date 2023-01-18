@@ -23,7 +23,9 @@
           <li><a href="#" class="nav-link px-2 link-dark">Daily</a></li>
           <li><a href="#" class="nav-link px-2 link-dark">Rates</a></li>
           <li><a href="#" class="nav-link px-2 link-dark">News</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Contact</a></li>
+          {{#if loggedIn}}
+          <script src="/Alpha-Stocks/public/js/logout.js"></script>
+          {{/if}}
         </ul>
 
       </header>

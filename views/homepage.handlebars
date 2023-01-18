@@ -24,8 +24,13 @@
                 <div class="my-3 py-3">
                     <h3>Sign in or register to see more.</h3>
                     <br>
-                    <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                    <button type="button" class="btn btn-primary">Sign-up</button>
+                    {{#if loggedIn}}
+                        <button type="button" id="logout" class="btn btn-outline-primary me-2">Logout</button>
+                    {{else}}
+                    <a href="/login">Login/Register</a>
+                    
+                    {{/if}}
+                    
                 </div>
             </div>
         </div>
