@@ -1,22 +1,67 @@
-//Gets all stocks for homepage
-const router = require('express'). Router();
-const {Folio,Stock} = require('../models');
+const path = require('path');
+const express = require('express');
+const session = require('express-session');
+const exphbs = require('express-handlebars');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-router.get('/', async (req, res) => {
-    try {
-      const dbStockData = await stock.findAll({
-        include: [
-          {
-            model: Folio,
-            attributes: ['filename', 'description'],
-          },
-        ],
-      });
+const routes = require('./controllers');
+const sequelize = require('./config/connection');
+const helpers = require('./utils/helpers');
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
+
+app.use(session(sess));
+
+const hbs = exphbs.create({ helpers });
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(routes);
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
+
+
+
+
+
+//Gets all stocks for homepage
+// const router = require('express'). Router();
+// const {Folio,Stock} = require('../models');
+
+// router.get('/', async (req, res) => {
+//     try {
+//       const dbStockData = await stock.findAll({
+//         include: [
+//           {
+//             model: Folio,
+//             attributes: ['filename', 'description'],
+//           },
+//         ],
+//       });
   
-      const Stock = dbStockData.map((Stock) =>
-        gallery.get({ plain: true })
-      );
+//       const Stock = dbStockData.map((Stock) =>
+//         gallery.get({ plain: true })
+//       );
   
+<<<<<<< HEAD
       res.render('homepage', {
         stocks,
         loggedIn: req.session.loggedIn,
@@ -31,3 +76,15 @@ router.get('/', async (req, res) => {
   // TODO: Slack the team, and see who will create a seed file. Because you want to test your routes.
   // TODO: Someone might be in charge of linting
   // TODO: Someone needs to make some middleware for withAuth
+=======
+//       res.render('homepage', {
+//         stocks,
+//         loggedIn: req.session.loggedIn,
+//       });
+//     } catch (err) {
+//       console.log(err);
+//       res.status(500).json(err);
+//     }
+//   });
+  
+>>>>>>> 7051be70a1a3b4394f62522ce959fe8536264c5a
