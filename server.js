@@ -27,3 +27,7 @@ router.get('/', async (req, res) => {
     }
   });
   
+
+  // TODO: Slack the team, and see who will create a seed file. Because you want to test your routes.
+  // TODO: Someone might be in charge of linting
+  // TODO: Someone needs to make some middleware for withAuth
