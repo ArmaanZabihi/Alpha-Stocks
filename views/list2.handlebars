@@ -2,12 +2,14 @@
      <div class="col-sm-4">
         <div class="bg-light pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden">
             <div class="my-3 py-3">
-                <h1>{{ list.list_name }}</h1>
-                <ul>
-                    {{#each list.stocks}}
-                        <li>{{stock_symbol}}</li>
-                    {{/each}}
-                </ul>
+                {{#each lists}}
+                    <h1>{{ list_name }}</h1>
+                    <ul>
+                        {{#each stocks}}
+                            <li>{{stock_symbol}}</li>
+                        {{/each}}
+                    </ul>
+                {{/each}}
                 
             </div>
         </div>
