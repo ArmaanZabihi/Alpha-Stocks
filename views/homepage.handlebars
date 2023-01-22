@@ -24,12 +24,11 @@
                 <div class="my-3 py-3">
                     <h3>Sign in or register to see more.</h3>
                     <br>
-                    {{#if loggedIn}}
-                        <button type="button" id="logout" class="btn btn-outline-primary me-2">Logout</button>
+                    {{!-- {{#if loggedIn}}
+                        <button id="logout" class="btn-no-style">Logout</button>
                     {{else}}
-                    <a href="/login">Login/Register</a>
-                    
-                    {{/if}}
+                        <a href="/login">Login</a>
+                    {{/if}} --}}
                     
                 </div>
             </div>
@@ -56,4 +55,9 @@
             </div>
         </div>
     </div>
+    
+    {{!-- {{#if loggedIn}}
+    <script src="/js/logout.js">Logout</script>
+    {{/if}}  --}}
+
 </main>
