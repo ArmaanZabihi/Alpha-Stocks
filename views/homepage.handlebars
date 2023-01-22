@@ -1,63 +1,78 @@
 <main>
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-        <div class="col-md-5 p-lg-5 mx-auto my-5">
+  <div id="chartContainer" style="height: 400px; width: 100%"></div>
+  {{!-- <div
+    class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light"
+  > --}}
+    
+    {{! <div class="col-md-5 p-lg-5 mx-auto my-5">
             <h1 class="display-4 fw-normal">Punny headline</h1>
             <p class="lead fw-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.</p>
             <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+        </div> }}
+    {{!-- <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div
+      class="product-device product-device-2 shadow-sm d-none d-md-block"
+    ></div>
+  </div> --}}
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div
+        class="text-bg-dark pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden"
+      >
+        <div class="my-3 py-3">
+          <h2 class="display-5">Another headline</h2>
+          <p class="lead">And an even wittier subheading.</p>
         </div>
-        <div class="product-device shadow-sm d-none d-md-block"></div>
-        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+      </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="text-bg-dark pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden">
-                <div class="my-3 py-3">
-                    <h2 class="display-5">Another headline</h2>
-                    <p class="lead">And an even wittier subheading.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class="bg-light pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden">
-                <div class="my-3 py-3">
-                    <h3>Sign in or register to see more.</h3>
-                    <br>
-                    {{!-- {{#if loggedIn}}
+    <div class="col-sm-4">
+      <div
+        class="bg-light pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden"
+      >
+        <div class="my-3 py-3">
+          <h3>Sign in or register to see more.</h3>
+          <br />
+          {{!-- {{#if loggedIn}}
                         <button id="logout" class="btn-no-style">Logout</button>
                     {{else}}
                         <a href="/login">Login</a>
                     {{/if}} --}}
-                    
-                </div>
-            </div>
+
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div
+        class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden"
+      >
+        <div class="my-3 p-3">
+          <h2 class="display-5">Another headline</h2>
+          <p class="lead">And an even wittier subheading.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden">
-                <div class="my-3 p-3">
-                    <h2 class="display-5">Another headline</h2>
-                    <p class="lead">And an even wittier subheading.</p>
-                </div>
-            </div>
+    <div class="col-sm-6">
+      <div
+        class="text-bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden"
+      >
+        <div class="my-3 py-3">
+          <h2 class="display-5">Another headline</h2>
+          <p class="lead">And an even wittier subheading.</p>
         </div>
-
-
-        <div class="col-sm-6">
-            <div class="text-bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden">
-                <div class="my-3 py-3">
-                    <h2 class="display-5">Another headline</h2>
-                    <p class="lead">And an even wittier subheading.</p>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    
-    {{!-- {{#if loggedIn}}
+  </div>
+
+  {{!-- {{#if loggedIn}}
     <script src="/js/logout.js">Logout</script>
     {{/if}}  --}}
 
 </main>
+<script src="./js/canvasjs.stock.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="./js/homepage.js"></script>
