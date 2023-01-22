@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../models');
-// const withAuth = require('../utils/auth');
+const withAuth = require('../utils/auth');
 
 var handlebars = require('handlebars');
 handlebars.registerHelper("loggedIn", options => {
@@ -27,32 +27,6 @@ router.get('/', async (req, res) => {
       countVisit: req.session.countVisit,
     });
   }); 
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-// GET one list
-router.get('/list/:id', async (req, res) => {
-  try {
-    const dbListData = await List.findByPk(req.params.id, {
-      include: [
-        {
-          model: ListStock,
-          attributes: [
-            'id',
-            'list_id',
-            'stock_id',
-            'stock_symbol',
-          ],
-        },
-      ],
-    });
-
-    const listStock = dbListData.get({ plain: true });
-    // Send over the 'loggedIn' session variable to the 'gallery' template
-    res.render('list', { list, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
