@@ -105,22 +105,20 @@ sequelize.sync({ force: false }).then(() => {
 //         gallery.get({ plain: true })
 //       );
   
-<<<<<<< HEAD
-      res.render('homepage', {
-        stocks,
-        loggedIn: req.session.loggedIn,
-      });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-  });
+  //     res.render('homepage', {
+  //       stocks,
+  //       loggedIn: req.session.loggedIn,
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //     res.status(500).json(err);
+  //   }
+  // });
   
 
   // TODO: Slack the team, and see who will create a seed file. Because you want to test your routes.
   // TODO: Someone might be in charge of linting
   // TODO: Someone needs to make some middleware for withAuth
-=======
 //       res.render('homepage', {
 //         stocks,
 //         loggedIn: req.session.loggedIn,
@@ -131,4 +129,3 @@ sequelize.sync({ force: false }).then(() => {
 //     }
 //   });
   
->>>>>>> 7051be70a1a3b4394f62522ce959fe8536264c5a
