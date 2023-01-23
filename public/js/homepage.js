@@ -89,7 +89,7 @@ window.onload = function() {
       return response.json();
     })
     .then(function(data) {
-      console.log(data);
+      // console.log(data);
       newData = data['Time Series (Daily)']
       for (const property in newData) {
         const temp = {
