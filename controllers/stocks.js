@@ -1,4 +1,4 @@
-const { Stock, List } = require("../../models")
+const { Stock, List } = require("../models")
 const router = require('express').Router();
 router.get('/', async (req, res) => {
     try{
@@ -18,14 +18,26 @@ router.get('/', async (req, res) => {
 // GET -> /:listId -> show all stocks
 router.get('/:listId', async (req, res) => {
     try {
-            const dbStockData = await List.findByPk(req.params.listId, {
-                include: [{
-                    model: Stock
-                }]
-            })
-        console.log(dbStockData)
+
+        const dbStockListsData = await List.findAll()
+        // console.log("this one is the list",dbStockListsData)
+        const stockLists = dbStockListsData.map(list => list.get({ plain: true }))
+        console.log(stockLists)
+
+        const dbStockData = await List.findByPk(req.params.listId, {
+            include: [{
+                model: Stock
+            }]
+        })
+        // console.log("stock data", dbStockData)
         const stocks = dbStockData.get({ plain: true })
-        res.render("list", { list: stocks })
+        console.log(stocks)
+
+        res.render("list", { 
+            loggedIn: req.session.loggedIn,
+            list: stocks,
+            lists: stockLists
+        })
     } catch (err) {
         console.log(err)
         res.status(500).json(err)

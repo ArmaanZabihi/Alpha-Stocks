@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-const stockRoutes = require('./stocks')
+// const stockRoutes = require('./stocks')
 
-router.use('/stocks', stockRoutes)
+// router.use('/stocks', stockRoutes)
 
 
 
