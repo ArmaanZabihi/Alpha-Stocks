@@ -1,12 +1,19 @@
+{{#if loggedIn}}
 <div class="row">
      <div class="col-sm-4">
+        <h3 class="text-center">Lists</h3>
+        <div class="list-group">
+            {{#each lists}}
+            <a href={{id}} class="list-group-item list-group-item-action text-center">{{list_name}}</a>
+            {{!-- <li><a class="dropdown-item" href="#">{{list_name}}</a></li> --}}
+            {{/each}}
+        </div>
         <div class="bg-light pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden">
             <div class="my-3 py-3">
-                {{#if loggedIn}}
                 <h1>{{ list.list_name }}</h1>
                 <ul>
                     {{#each list.stocks}}
-                        <li>{{stock_symbol}}</li>
+                        <li><a href="#">{{stock_symbol}}</a></li>
                     {{/each}}
                 </ul>
                 
@@ -25,3 +32,26 @@
 {{else}}
 <a href="/login">You must login first to view the paintings</a>
 {{/if}}
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Lists
+    </button>
+    <ul class="dropdown-menu">
+        {{#each lists}}
+            <li><a class="dropdown-item" href="#">{{list_name}}</a></li>
+        {{/each}}
+    </ul>
+</div>
+
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
