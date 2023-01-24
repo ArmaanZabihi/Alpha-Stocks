@@ -21,11 +21,9 @@
         </div>
     </div>
     <div class="col-sm-8">
-        <div class="bg-light pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden">
             <div class="my-3 py-3">
-                <h2 class="display-5">Chart</h2>
+                <h2 id="chartContainer" style="height: 400px; width: 100%">Chart</h2>
             </div>
-        </div>
     </div>
 </div>
 
@@ -33,25 +31,7 @@
 <a href="/login">You must login first to view the paintings</a>
 {{/if}}
 
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Lists
-    </button>
-    <ul class="dropdown-menu">
-        {{#each lists}}
-            <li><a class="dropdown-item" href="#">{{list_name}}</a></li>
-        {{/each}}
-    </ul>
-</div>
 
-<div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown link
-  </a>
 
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div>
+<script src="/js/canvasjs.stock.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/stocks-chart.js"></script>

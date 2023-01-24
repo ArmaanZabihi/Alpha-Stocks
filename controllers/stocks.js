@@ -1,15 +1,30 @@
 const { Stock, List } = require("../models")
 const router = require('express').Router();
 router.get('/', async (req, res) => {
-    try{
-        const dbStockData = await List.findAll({
+    try {
+
+        const dbStockListsData = await List.findAll({
+            where: {
+                user_id: req.session.user_id
+            }
+        })
+        // console.log("this one is the list",dbStockListsData)
+        const stockLists = dbStockListsData.map(list => list.get({ plain: true }))
+        console.log(stockLists)
+
+        listId = stockLists[0].id
+
+        const dbStockData = await List.findByPk(listId, {
             include: [{
                 model: Stock
             }]
         })
-        const stocks = dbStockData.map(stock => stock.get({ plain: true }))
+        // console.log("stock data", dbStockData)
+        const stocks = dbStockData.get({ plain: true })
         console.log(stocks)
-        res.render("list2", { lists: stocks })
+
+        res.redirect(`./stocks/${stockLists[0].id}-${stocks.stocks[0].stock_symbol}`)
+
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
@@ -19,12 +34,12 @@ router.get('/', async (req, res) => {
 router.get('/:listId', async (req, res) => {
     try {
 
-        const dbStockListsData = await List.findAll()
-        // console.log("this one is the list",dbStockListsData)
-        const stockLists = dbStockListsData.map(list => list.get({ plain: true }))
-        console.log(stockLists)
+        params = req.params.listId.split('-')
+        const listId = params[0]
 
-        const dbStockData = await List.findByPk(req.params.listId, {
+        // console.log(req.session.user_id)
+
+        const dbStockData = await List.findByPk(listId, {
             include: [{
                 model: Stock
             }]
@@ -33,10 +48,28 @@ router.get('/:listId', async (req, res) => {
         const stocks = dbStockData.get({ plain: true })
         console.log(stocks)
 
+        if (params.length < 2) {
+            res.redirect(`./${listId}-${stocks.stocks[0].stock_symbol}`)
+        }
+
+        const dbStockListsData = await List.findAll({
+            where: {
+                user_id: req.session.user_id
+            }
+        })
+        // console.log("this one is the list",dbStockListsData)
+        const stockLists = dbStockListsData.map(list => list.get({ plain: true }))
+        console.log(stockLists)
+
+        
+
+        
+
         res.render("list", { 
             loggedIn: req.session.loggedIn,
             list: stocks,
-            lists: stockLists
+            lists: stockLists,
+            showListId: stocks.id
         })
     } catch (err) {
         console.log(err)

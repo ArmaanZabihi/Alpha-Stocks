@@ -25,7 +25,7 @@
           <li>
             <!-- Conditionally render login or logout links -->
             {{#if loggedIn}}
-            <button id="myLists" class="btn">My Lists</button>
+            <a class="btn" href="/stocks" role="button">My Lists</a>
             <button id="logout" class="btn btn-primary">Logout</button>
             {{else}}
             <a href="/login" class="btn btn-primary">login</a>
