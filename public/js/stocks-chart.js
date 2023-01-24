@@ -1,3 +1,5 @@
+const stock = location.href.split('-')[1]
+
 var newData
 
 var stockArray = []
@@ -10,7 +12,7 @@ window.onload = function() {
     exportEnabled: true,
     theme: "light2",
     title: {
-      text: "AAPL Stock Chart"
+      text: `${stock} Stock Chart`
     },
     charts: [{
       toolTip: {
@@ -31,7 +33,7 @@ window.onload = function() {
         }
       },
       axisY2: {
-        title: "Apple Price",
+        title: `${stock} Price`,
         prefix: "$"
       },
       legend: {
@@ -60,7 +62,7 @@ window.onload = function() {
       },
       axisY2: {
         prefix: "$",
-        title: "AAPL/USD"
+        title: `${stock}/USD`
       },
       legend: {
         horizontalAlign: "left"
@@ -68,7 +70,7 @@ window.onload = function() {
       data: [{
         yValueFormatString: "$#,###.##",
         axisYType: "secondary",
-        name: "AAPL/USD",
+        name: `${stock}/USD`,
         dataPoints: dataPoints2
       }]
     }],
@@ -83,7 +85,7 @@ window.onload = function() {
       }
     }
   });
-  fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=AAPL&apikey=8CXNEA1SIH9L6U8N`)
+  fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stock}&apikey=8CXNEA1SIH9L6U8N`)
     // fetch(`https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=CNY&apikey=8CXNEA1SIH9L6U8N`)
     .then(function(response) {
       return response.json();
