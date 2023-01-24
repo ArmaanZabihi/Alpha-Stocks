@@ -39,15 +39,6 @@ router.get('/:listId', async (req, res) => {
 
         // console.log(req.session.user_id)
 
-        const dbStockListsData = await List.findAll({
-            where: {
-                user_id: req.session.user_id
-            }
-        })
-        // console.log("this one is the list",dbStockListsData)
-        const stockLists = dbStockListsData.map(list => list.get({ plain: true }))
-        console.log(stockLists)
-
         const dbStockData = await List.findByPk(listId, {
             include: [{
                 model: Stock
@@ -57,10 +48,28 @@ router.get('/:listId', async (req, res) => {
         const stocks = dbStockData.get({ plain: true })
         console.log(stocks)
 
+        if (params.length < 2) {
+            res.redirect(`./${listId}-${stocks.stocks[0].stock_symbol}`)
+        }
+
+        const dbStockListsData = await List.findAll({
+            where: {
+                user_id: req.session.user_id
+            }
+        })
+        // console.log("this one is the list",dbStockListsData)
+        const stockLists = dbStockListsData.map(list => list.get({ plain: true }))
+        console.log(stockLists)
+
+        
+
+        
+
         res.render("list", { 
             loggedIn: req.session.loggedIn,
             list: stocks,
-            lists: stockLists
+            lists: stockLists,
+            showListId: stocks.id
         })
     } catch (err) {
         console.log(err)
