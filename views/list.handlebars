@@ -8,11 +8,17 @@
             {{!-- <li><a class="dropdown-item" href="#">{{list_name}}</a></li> --}}
             {{/each}}
         </div>
-        <div class="bg-light pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden">
+        <div class="bg-light pt-3 px-3 pt-md-2 px-md-3 m-md-3 text-center overflow-hidden">
+            <div class="my-3 py-3">
+                <h2>Add a Stock</h2>
+                {{> add-to-list}}
+            </div>
+        </div>
+        <div class="bg-light pt-3 px-3 pt-md-2 px-md-5 m-md-3 text-center overflow-hidden">
             <div class="my-3 py-3">
                 <h1 class="list-of-stocks" id="listId-{{list.id}}">{{ list.list_name }}</h1>
                 
-                <ul>
+                <ul class="list-unstyled">
                     {{#each list.stocks}}
                         <li><a href="#" id="stock">{{stock_symbol}}</a></li>
                     {{/each}}
