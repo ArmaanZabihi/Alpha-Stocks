@@ -10,13 +10,22 @@
         </div>
         <div class="bg-light pt-3 px-3 pt-md-5 px-md-5 m-md-3 text-center overflow-hidden">
             <div class="my-3 py-3">
-                <h1>{{ list.list_name }}</h1>
+                <h1 class="list-of-stocks" id="listId-{{list.id}}">{{ list.list_name }}</h1>
+                
                 <ul>
                     {{#each list.stocks}}
-                        <li><a href="#">{{stock_symbol}}</a></li>
+                        <li><a href="#" id="stock">{{stock_symbol}}</a></li>
                     {{/each}}
                 </ul>
-                
+                <script>
+                    let stockListId = document.querySelector(".list-of-stocks").id.split('-')[1]
+                    const stockLinks = document.querySelectorAll("#stock")
+                    stockLinks.forEach((stock) => {
+                        const name = stock.innerHTML;
+                        stock.setAttribute('href', `/stocks/${stockListId}-${name}`)
+                    })
+
+                </script>
             </div>
         </div>
     </div>
