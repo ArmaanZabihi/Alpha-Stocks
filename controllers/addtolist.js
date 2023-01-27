@@ -32,12 +32,26 @@ router.get('/:id', async (req, res) => {
 // POST => /:listId -> create a stock
 
 router.post('/', async (req, res) => {
-    const newStock = await Stock.create({ stock_symbol: req.body.stock_symbol })
-        .then((stockIds) => res.status(200).json(stockIds))
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+    const newStockDb = await Stock.findOne({
+        where: {
+            list_name: req.body.list_name
+        }
+    })
+    const newStock = newStockDb.get({ plain: true })
+    List.create(
+    {
+        list_name: list_name,
+
+        user_id: req.session.user_id,
+    })
+    .then((updatedList) => {
+        // new to Encode URL 
+       res.status(200).json(updatedList)
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
     });
 
     
@@ -59,6 +73,14 @@ router.post('/:id', async (req, res) => {
             stock_symbol: req.body.stock_symbol
         }
     })
+    if (newStockDb == null) {
+        const newStock = await Stock.create({ stock_symbol: req.body.stock_symbol })
+        const newStockDb = await Stock.findOne({
+            where: {
+                stock_symbol: req.body.stock_symbol
+            }
+        })
+    }
     const newStock = newStockDb.get({ plain: true })
     ListStock.create(
     {
