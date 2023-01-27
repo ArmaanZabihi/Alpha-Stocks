@@ -1,46 +1,61 @@
-const { Stock, List, ListStock } = require("../models")
-const router = require('express').Router();
+const { Stock, List, ListStock } = require("../models");
+const router = require("express").Router();
 
 //GET -> / -> show all stocks
-router.get('/', async (req, res) => {
-    try{
-        const dbStockData = await Stock.findAll();
-        res.status(200).json(dbStockData);
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
-    }
-})
-
-// GET -> one stock
-router.get('/:id', async (req, res) => {
-    try {
-
-        const singleStock = await Stock.findByPk(req.params.id);
-        if (!singleStock){
-            res.status(404).json({message: "No stock found with this id"})
-            return;
-        }
-        res.status(200).json(singleStock);
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
-    }
+router.get("/", async (req, res) => {
+  try {
+    const dbStockData = await Stock.findAll();
+    res.status(200).json(dbStockData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
+// GET -> one stock
+router.get("/:id", async (req, res) => {
+  try {
+    const singleStock = await Stock.findByPk(req.params.id);
+    if (!singleStock) {
+      res.status(404).json({ message: "No stock found with this id" });
+      return;
+    }
+    res.status(200).json(singleStock);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // POST => /:listId -> create a stock
 
-router.post('/', async (req, res) => {
-    const newStock = await Stock.create({ stock_symbol: req.body.stock_symbol })
-        .then((stockIds) => res.status(200).json(stockIds))
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-    });
+router.post("/", async (req, res) => {
+  const newListDb = await List.findOne({
+    where: {
+      list_name: req.body.list_name,
+    },
+  });
+  if (newListDb !== null) {
+    // alert("List Already In Database");
 
-    
+    res.json({ success: false, message: "oops i did it again" });
+  } else {
+    List.create({
+      list_name: req.body.list_name,
+
+      user_id: req.session.user_id,
+    })
+      .then((updatedList) => {
+        // new to Encode URL
+        res.json({ success: true });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
+});
+
 // router.put('/:id', async (req, res) => {
 //     // First get the list that we are going to update
 //     const list = await ListStock.findByPk(req.params.id);
@@ -52,34 +67,42 @@ router.post('/', async (req, res) => {
 //     return list.setStocks(newStocks);
 // })
 
-router.post('/:id', async (req, res) => {
-    const stockView = req.params.id
+router.post("/:id", async (req, res) => {
+  const stockView = req.params.id;
+  const newStockDb = await Stock.findOne({
+    where: {
+      stock_symbol: req.body.stock_symbol,
+    },
+  });
+  if (newStockDb == null) {
+    const newStock = await Stock.create({
+      stock_symbol: req.body.stock_symbol,
+    });
     const newStockDb = await Stock.findOne({
-        where: {
-            stock_symbol: req.body.stock_symbol
-        }
-    })
-    const newStock = newStockDb.get({ plain: true })
-    ListStock.create(
-    {
-        list_id: req.params.id,
+      where: {
+        stock_symbol: req.body.stock_symbol,
+      },
+    });
+  }
+  const newStock = newStockDb.get({ plain: true });
+  ListStock.create({
+    list_id: req.params.id,
 
-        stock_id: newStock.id,
-    })
+    stock_id: newStock.id,
+  })
     .then((updatedStock) => {
-        // new to Encode URL 
-       res.redirect(`/stocks/${stockView}-${newStock.stock_symbol}`)
+      // new to Encode URL
+      res.redirect(`/stocks/${stockView}-${newStock.stock_symbol}`);
     })
     .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 
-
 // // PUT => /:listId -> Update a stock to the list
 // router.put('/:id', (req, res) => {
-    
+
 //             .then((stock) => {
 //                 return ListStock.findAll({where: { stock_id: req.params.id } });
 //             })
@@ -113,25 +136,24 @@ router.post('/:id', async (req, res) => {
 //             });
 // });
 
-router.delete('/:id', async (req, res) => {
-    // delete stock by its `id` value
-    try {
-      const currentStock = await Stock.destroy({
-        where: { 
-          id: req.params.id,
-        }
-      });
-  
-      if (!currentStock) {
-        res.status(404).json({ message: 'Stock not found' });
-        return;
-      }
-  
-      res.status(200).json({ message: 'Stock deleted' });
-      } catch (err) {
-      res.status(500).json(err);
-      }
-  });
+router.delete("/:id", async (req, res) => {
+  // delete stock by its `id` value
+  try {
+    const currentStock = await Stock.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
 
+    if (!currentStock) {
+      res.status(404).json({ message: "Stock not found" });
+      return;
+    }
+
+    res.status(200).json({ message: "Stock deleted" });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
