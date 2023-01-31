@@ -14,37 +14,39 @@ GIVEN when i visit the AlphaStocks web app, i am taken to a homepage were i log 
 WHEN i log in i am presented with my stocklist 
 THEN i am able to chose a stock and see its present graph
 
-## Technoligies Used:
-* Use Node.js and Express.js to create a RESTful API. --Dillion
+## Task and Process:
+* Use Node.js and Express.js to create a RESTful API. -- Dillon
 
-* Use Handlebars.js as the template engine. --Hannah
+* Use Handlebars.js as the template engine. -- Hannah
 
-* Use MySQL and the Sequelize ORM for the database. --Armaan
+* Use MySQL and the Sequelize ORM for the database. -- Armaan
 
-* Have both GET and POST routes for retrieving and adding new data. --Hannah
+* Have both GET and POST routes for retrieving and adding new data. -- Hannah
 
-* Have a folder structure that meets the MVC paradigm. --Armaaan
+* Have a folder structure that meets the MVC paradigm. -- Armaaan
 
-* Include authentication (express-session and cookies). --Hannah
+* Include authentication (express-session and cookies). -- Hannah
 
-* API keys and sensitive information with environment variables. --Juan
+* API keys and sensitive information with environment variables. -- Juan
 
 * Be deployed using Heroku (with data). -- Armaaan
 
-* Have a polished UI. --Dillion
+* Have a polished UI. -- Hannah & Dillon
 
-* Have a professional README (with unique name, description, technologies used, screenshot, and link to deployed application). --Juan
+* Have a professional README (with unique name, description, technologies used, screenshot, and link to deployed application). -- Juan
 
-### Screenshot
+## Visual
+ ![Screen Shot 2023-01-30 at 4.57.14 PM](https://i.ibb.co/09VLBF2/Screen-Shot-2023-01-30-at-4-57-14-PM.png)
 
-### Link Deployed:
+
+## Link Deployed:
 > - Heroku Link: https://alphastocks.herokuapp.com/# 
 > - Github Link: https://github.com/ArmaanZabihi/Alpha-Stocks.git
 
-### Task ASSignment process:
+## Task Assignment process:
 The task were assigned to us based on what needed to be done for our web application and how much time we were given for a task. Everytime the team regrouped we discussed what we did, than planned what we needed to do and towards the end of our meetings we discussed whom should do the next task and what would be the acceptance criteria.
 
-### Contributors:
+## Contributors:
 > -Dillion Kim https://github.com/dillonkim19
 > -Hannah Kim https://github.com/hannahsykim
 > -Armaan https://github.com/ArmaanZabihi
